@@ -1,4 +1,4 @@
-package algoritma
+package algorithm
 
 import (
 	"regexp"
@@ -48,11 +48,11 @@ func Filter(s string) map[string]string {
 		formatBulan := regexp.MustCompile(regrexpBulan)
 		namaBulan := formatBulan.FindString(tanggal)
 		tanggal = formatBulan.ReplaceAllString(tanggal, bulan[namaBulan])
-		tanggal = strings.Join(reverse(strings.Split(tanggal, " ")), "-")
+		tanggal = strings.Replace(tanggal, " ", "-", -1)
 	} else if (formatTanggal2.FindString(s) != "") {
 		tanggal = formatTanggal2.FindString(s)
 		formatSplit := regexp.MustCompile(`[\/\-]`)
-		tanggal = strings.Join(reverse(formatSplit.Split(tanggal, -1)), "-")
+		tanggal = strings.Join(formatSplit.Split(tanggal, -1), "-")
 	}
 
 	s = strings.Replace(s, tanggal, "", -1)
