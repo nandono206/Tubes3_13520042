@@ -13,6 +13,21 @@ func reverse(str []string) []string {
 	return str
 }
 
+func fixDateFormatSQL(str string) string {
+	splitStr := strings.Split(str, "-")
+	// Periksa format tahun bulan MM
+	if (len(splitStr[1]) == 1) {
+		splitStr[1] = "0" + splitStr[1]
+	}
+	
+	// Periksa format tahun hari DD
+	if (len(splitStr[2]) == 1) {
+		splitStr[2] = "0" + splitStr[2]
+	}
+
+	return strings.Join(splitStr, "-")
+}
+
 /* regrex for filter data history */
 func Filter(s string) map[string]string {
 	m := make(map[string]string)
@@ -48,11 +63,13 @@ func Filter(s string) map[string]string {
 		formatBulan := regexp.MustCompile(regrexpBulan)
 		namaBulan := formatBulan.FindString(tanggal)
 		tanggal = formatBulan.ReplaceAllString(tanggal, bulan[namaBulan])
-		tanggal = strings.Replace(tanggal, " ", "-", -1)
+		tanggal = strings.Join(reverse(strings.Split(tanggal, " ")), "-")
+		tanggal = fixDateFormatSQL(tanggal)
 	} else if (formatTanggal2.FindString(s) != "") {
 		tanggal = formatTanggal2.FindString(s)
 		formatSplit := regexp.MustCompile(`[\/\-]`)
-		tanggal = strings.Join(formatSplit.Split(tanggal, -1), "-")
+		tanggal = strings.Join(reverse(formatSplit.Split(tanggal, -1)), "-")
+		tanggal = fixDateFormatSQL(tanggal)
 	}
 
 	s = strings.Replace(s, tanggal, "", -1)
