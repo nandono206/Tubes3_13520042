@@ -9,7 +9,7 @@ import (
 )
 
 var DB *gorm.DB
-// var rawDB *sql.DB
+var RawDB *sql.DB
 
 func Connect(){
 
@@ -17,7 +17,7 @@ func Connect(){
 	if err1 != nil{
 		panic("panic")
 	}
-	// rawDB = sqlDB
+	RawDB = sqlDB
 	gormDB, err := gorm.Open(mysql.New(mysql.Config{
 		Conn: sqlDB,
 	  }), &gorm.Config{DisableForeignKeyConstraintWhenMigrating: true,})

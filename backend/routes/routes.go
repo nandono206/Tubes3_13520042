@@ -10,5 +10,7 @@ func Initialize(app *fiber.App){
 
 	app.Post("/api/addPenyakit", controller.AddPenyakit)
 	app.Post("/api/tesSakit", controller.IsSakit)
+	app.Post("/api/history", controller.CekHistory)
+	
 
 }
