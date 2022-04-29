@@ -6,7 +6,7 @@ import (
 )
 
 func reverse(str []string) []string {
-	for i := 0; i < len(strG)/2; i++ {
+	for i := 0; i < len(str)/2; i++ {
 		j := len(str) - i - 1
 		str[i], str[j] = str[j], str[i]
 	}
@@ -48,7 +48,7 @@ func Filter(s string) map[string]string {
 		"DESEMBER" : "12",
 	}
 	regrexpBulan := `(JANUARI|FEBRUARI|MARET|APRIL|MEI|JUNI|JULI|AGUSTUS|SEPTEMBER|OKTOBER|NOVEMBER|DESEMBER)`
-	regrexpPenyakit := regexp.MustCompile(`\b\w+\b$`)
+	regrexpPenyakit := regexp.MustCompile(`\b[\w\s]+\b$`)
 	formatTanggal1 := regexp.MustCompile(`(3[01]|[12][0-9]|0?[1-9]) ` + regrexpBulan + ` \d{4}`) // 1 JANUARI 2020
 	formatTanggal2 := regexp.MustCompile(`(3[01]|[12][0-9]|0?[1-9])[\/\-]((0?[0-9])|((1)[0-2]))[\/\-]\d{4}`) // 31/12/2019 or 31-12-2019
 
