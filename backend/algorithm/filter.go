@@ -6,7 +6,7 @@ import (
 )
 
 func reverse(str []string) []string {
-	for i := 0; i < len(str)/2; i++ {
+	for i := 0; i < len(strG)/2; i++ {
 		j := len(str) - i - 1
 		str[i], str[j] = str[j], str[i]
 	}
@@ -60,6 +60,7 @@ func Filter(s string) map[string]string {
 	// Mengambil string tanggal
 	if (formatTanggal1.FindString(s) != "") {
 		tanggal = formatTanggal1.FindString(s)
+		s = strings.Replace(s, tanggal, "", -1)
 		formatBulan := regexp.MustCompile(regrexpBulan)
 		namaBulan := formatBulan.FindString(tanggal)
 		tanggal = formatBulan.ReplaceAllString(tanggal, bulan[namaBulan])
@@ -67,12 +68,12 @@ func Filter(s string) map[string]string {
 		tanggal = fixDateFormatSQL(tanggal)
 	} else if (formatTanggal2.FindString(s) != "") {
 		tanggal = formatTanggal2.FindString(s)
+		s = strings.Replace(s, tanggal, "", -1)
 		formatSplit := regexp.MustCompile(`[\/\-]`)
 		tanggal = strings.Join(reverse(formatSplit.Split(tanggal, -1)), "-")
 		tanggal = fixDateFormatSQL(tanggal)
 	}
 
-	s = strings.Replace(s, tanggal, "", -1)
 	s = strings.Trim(s, " ")
 
 	namaPenyakit = regrexpPenyakit.FindString(s)

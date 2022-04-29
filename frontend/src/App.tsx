@@ -21,8 +21,8 @@ function App() {
         
         </BrowserRouter> */}
 
-        {/* <AddPenyakit mes={mes} setMes={setMes}/> */}
-        <TesSakit mes={mes} setMes={setMes}/>
+        <AddPenyakit mes={mes} setMes={setMes}/>
+        {/* <TesSakit mes={mes} setMes={setMes}/> */}
       
     
     </div>
