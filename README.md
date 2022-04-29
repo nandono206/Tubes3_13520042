@@ -16,6 +16,3 @@ the Boyer-Moore algorithm.
 2. Lalu  pindah ke directory “new-frontend” dan nyalakan frontend dengan command “npm start”
 3. Secara  default, homepage menampilkan bagian cek kesehatan
 4. Pada bagian sidebar terdapat tombol-tombol yang dapat ditekan untuk pindah ke page-page fitur lain
-
-## Note
-TBD
